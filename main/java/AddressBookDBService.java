@@ -5,7 +5,7 @@ import java.util.List;
 
 public class AddressBookDBService {
     private int connectionCounter = 0;
-    private PreparedStatement employeePayrollDataStatement;
+    private PreparedStatement addressbookDataStatement;
     private static AddressBookDBService addressBookDBService;
     private AddressBookDBService(){
 
@@ -57,4 +57,71 @@ public class AddressBookDBService {
         }
         return contactsDataList;
     }
+
+    public int updateContactData(String firstName, String address) {
+        return this.updateContactDataUsingStatement(firstName, address);
+
+    }
+
+    private int updateContactDataUsingStatement(String firstName, String address) {
+        String sql = String.format("update contacts set address = '%s' where firstname = '%s';",address, firstName );
+        try(Connection connection = this.getConnection()){
+            Statement statement = connection.createStatement();
+            return statement.executeUpdate(sql);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public List<ContactsData> getContactsDataByName(String firstName) {
+        List<ContactsData> contactsDataList = null;
+        if(this.addressbookDataStatement == null)
+            this.prepareStatementForContactsData();
+        try{
+            addressbookDataStatement.setString(1,firstName);
+            ResultSet resultSet = addressbookDataStatement.executeQuery();
+            contactsDataList = this.getContactsData(resultSet);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return contactsDataList;
+    }
+
+    private void prepareStatementForContactsData() {
+        try{
+            Connection connection = this.getConnection();
+            String sql = "SELECT * FROM contacts WHERE firstname = ?";
+            addressbookDataStatement = connection.prepareStatement(sql);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    private List<ContactsData> getContactsData(ResultSet resultSet) {
+        List<ContactsData> contactsDataList = new ArrayList<>();
+        try{
+            while (resultSet.next()){
+                int id = resultSet.getInt("id");
+                String firstName = resultSet.getString("firstname");
+                String lastName = resultSet.getString("lastName");
+                String address = resultSet.getString("address");
+                String city = resultSet.getString("city");
+                String state = resultSet.getString("state");
+                String zip = resultSet.getString("zip");
+                String phoneNo = resultSet.getString("phoneno");
+                String email = resultSet.getString("email");
+                LocalDate start = resultSet.getDate("start").toLocalDate();
+                contactsDataList.add(new ContactsData(id, firstName, lastName, address, city, state, zip, phoneNo, email, start));
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return contactsDataList;
+
+
+    }
+
 }
+
