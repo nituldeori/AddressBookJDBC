@@ -51,9 +51,15 @@ public class AddressBookService {
 
     public List<ContactsData> readContactsforDateRange(InputOutputService dbIo, LocalDate startDate, LocalDate endDate) {
         if(dbIo.equals(InputOutputService.DB_IO))
-            return addressBookDBService.getEmployeePayrollForDateRange(startDate, endDate);
+            return addressBookDBService.getContactsForDateRange(startDate, endDate);
         return null;
 
+    }
+
+    public List<ContactsData> readContactsforCity(InputOutputService dbIo, String city) {
+        if(dbIo.equals(InputOutputService.DB_IO))
+            return addressBookDBService.getContactsForCity(city);
+        return null;
     }
 
 

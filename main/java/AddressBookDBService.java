@@ -123,7 +123,7 @@ public class AddressBookDBService {
 
     }
 
-    public List<ContactsData> getEmployeePayrollForDateRange(LocalDate startDate, LocalDate endDate) {
+    public List<ContactsData> getContactsForDateRange(LocalDate startDate, LocalDate endDate) {
         String sql = String.format("SELECT * FROM contacts WHERE START BETWEEN '%s' AND '%s';",
                 Date.valueOf(startDate), Date.valueOf(endDate));
         return this.getContactsDataUsingDB(sql);
@@ -142,6 +142,12 @@ public class AddressBookDBService {
         }
         return contactsDataList;
 
+    }
+
+    public List<ContactsData> getContactsForCity(String city) {
+        String sql = String.format("SELECT * FROM contacts WHERE city = '%s';",
+                city);
+        return this.getContactsDataUsingDB(sql);
     }
 }
 

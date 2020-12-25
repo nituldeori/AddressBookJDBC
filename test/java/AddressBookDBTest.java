@@ -26,8 +26,16 @@ public class AddressBookDBTest {
         AddressBookService addressBookService = new AddressBookService();
         LocalDate startDate = LocalDate.of(2018, 01, 01);
         LocalDate endDate = LocalDate.now();
-        List<ContactsData> employeePayrollData = addressBookService.readContactsforDateRange(AddressBookService.InputOutputService.DB_IO, startDate, endDate);
-        Assert.assertEquals(2, employeePayrollData.size());
+        List<ContactsData> contactsDataList = addressBookService.readContactsforDateRange(AddressBookService.InputOutputService.DB_IO, startDate, endDate);
+        Assert.assertEquals(2, contactsDataList.size());
+    }
+
+    @Test
+    public void givenCity_WhenRetrieved_ShouldMatchContactsCount() {
+        AddressBookService addressBookService = new AddressBookService();
+        String city = "Guwahati";
+        List<ContactsData> contactsDataList = addressBookService.readContactsforCity(AddressBookService.InputOutputService.DB_IO, city);
+        Assert.assertEquals(1, contactsDataList.size());
     }
 
 }
