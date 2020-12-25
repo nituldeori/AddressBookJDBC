@@ -149,5 +149,25 @@ public class AddressBookDBService {
                 city);
         return this.getContactsDataUsingDB(sql);
     }
+
+    public ContactsData addContactToDB(String firstName, String lastName, String address, String city, String state, String zip, String phoneNo, String email, LocalDate start) {
+        int employeeId = -1;
+        ContactsData contactsData = null;
+        String sql = String.format("INSERT INTO contacts (firstName, lastName, address, city, state, zip, phoneNo, email, start)"+
+                "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')", firstName, lastName, address, city, state, zip, phoneNo, email, Date.valueOf(start));
+        try(Connection connection = this.getConnection()){
+            Statement statement = connection.createStatement();
+            int rowAffected = statement.executeUpdate(sql, statement.RETURN_GENERATED_KEYS);
+            if(rowAffected == 1){
+                ResultSet resultSet = statement.getGeneratedKeys();
+                if(resultSet.next()) employeeId = resultSet.getInt(1);
+            }
+            contactsData = new ContactsData(employeeId,firstName, lastName, address, city, state, zip, phoneNo, email,start);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return contactsData;
+
+    }
 }
 

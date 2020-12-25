@@ -62,6 +62,10 @@ public class AddressBookService {
         return null;
     }
 
+    public void addContactToAddressBook(String firstName, String lastName, String address, String city, String state, String zip, String phoneNo, String email, LocalDate start) {
+        contactList.add(addressBookDBService.addContactToDB(firstName, lastName, address, city, state, zip, phoneNo, email, start));
+    }
+
 
 
 }
