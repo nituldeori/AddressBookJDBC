@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.List;
 
 public class AddressBookService {
@@ -45,6 +46,13 @@ public class AddressBookService {
     public boolean checkContactListInSymcWithDB(String firstName) {
         List<ContactsData> contactsDataList = addressBookDBService.getContactsDataByName(firstName);
         return contactsDataList.get(0).equals(getContactsData(firstName));
+
+    }
+
+    public List<ContactsData> readContactsforDateRange(InputOutputService dbIo, LocalDate startDate, LocalDate endDate) {
+        if(dbIo.equals(InputOutputService.DB_IO))
+            return addressBookDBService.getEmployeePayrollForDateRange(startDate, endDate);
+        return null;
 
     }
 
