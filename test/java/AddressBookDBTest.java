@@ -41,12 +41,12 @@ public class AddressBookDBTest {
     @Test
     public void givenNewContact_WhenAdded_ShouldSyncWithDB(){
         AddressBookService addressBookService = new AddressBookService();
+        addressBookService.readContactsData(AddressBookService.InputOutputService.DB_IO);
         addressBookService.addContactToAddressBook("Mark","Evans", "Panbazar", "Guwahati","Assam","781032", "777777","mark.evans@gmail.com", LocalDate.now());
         boolean result = addressBookService.checkContactListInSymcWithDB("Mark");
         Assert.assertTrue(result);
-
-
-
     }
+
+
 
 }

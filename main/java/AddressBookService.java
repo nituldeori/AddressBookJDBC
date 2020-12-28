@@ -5,11 +5,10 @@ public class AddressBookService {
 
 
 
-
-    public enum IOService{CONSOLE_IO,FILE_IO,REST_IO, DB_IO}
+    public enum InputOutputService{CONSOLE_IO,FILE_IO,REST_IO, DB_IO}
     private List<ContactsData> contactList;
     private AddressBookDBService addressBookDBService;
-    public enum InputOutputService{CONSOLE_IO,FILE_IO,REST_IO, DB_IO}
+
 
     public AddressBookService(){
         addressBookDBService = AddressBookDBService.getInstance();
@@ -61,6 +60,9 @@ public class AddressBookService {
             return addressBookDBService.getContactsForCity(city);
         return null;
     }
+
+
+
 
     public void addContactToAddressBook(String firstName, String lastName, String address, String city, String state, String zip, String phoneNo, String email, LocalDate start) {
         contactList.add(addressBookDBService.addContactToDB(firstName, lastName, address, city, state, zip, phoneNo, email, start));
