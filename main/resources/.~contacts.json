@@ -14,7 +14,13 @@
     },
     {
       "firstname": "Hayato",
+      "lastname": "Dangal",
       "address": "Sadiya",
+      "city": "Tinsukia",
+      "state": "Assam",
+      "zip": "781016",
+      "phoneno": "6666",
+      "email": "hayato@gmail.com",
       "id": 2
     },
     {
