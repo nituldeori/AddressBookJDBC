@@ -14,20 +14,14 @@
     },
     {
       "firstname": "Hayato",
+      "lastname": "Dangal",
       "address": "Sadiya",
-      "id": 2
-    },
-    {
-      "id": 3,
-      "firstname": "Mark",
-      "lastname": "Evans",
-      "address": "Panbazar",
-      "city": "Guwahati",
+      "city": "Tinsukia",
       "state": "Assam",
-      "zip": "781032",
-      "phoneno": "777777",
-      "email": "mark.evans@gmail.com",
-      "start": "2020-12-28"
+      "zip": "781016",
+      "phoneno": "6666",
+      "email": "hayato@gmail.com",
+      "id": 2
     }
   ]
 }

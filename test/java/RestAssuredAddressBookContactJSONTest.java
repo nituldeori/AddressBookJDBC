@@ -1,6 +1,8 @@
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,6 +41,17 @@ public class RestAssuredAddressBookContactJSONTest {
         response.then().body("id", Matchers.any(Integer.class));
         response.then().body("firstname", Matchers.is("Hayato"));
         response.then().body("address", Matchers.is("Sadiya"));
+    }
+
+    @Test
+    public void givenContactId_OnDelete_ShouldReturnSuccessStatus(){
+        Response response = RestAssured.delete("/contacts/3");
+        String respAsStr = response.asString();
+        int statusCode = response.getStatusCode();
+        MatcherAssert.assertThat(statusCode, CoreMatchers.is(200));
+        response = getContactsList();
+        System.out.println("AT END: "+response.asString());
+        response.then().body("id", Matchers.not(3));
     }
 
 
