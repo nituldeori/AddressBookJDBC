@@ -1,0 +1,37 @@
+{
+  "contacts": [
+    {
+      "firstname": "Nitul",
+      "lastname": "Deori",
+      "address": "Hengrabari",
+      "city": "Guwahati",
+      "state": "Assam",
+      "zip": "781036",
+      "phoneno": "99999",
+      "email": "nituldeori@gmail.com",
+      "start": "2020-11-10"
+    },
+    {
+      "firstname": "Hayato",
+      "lastname": "Dangal",
+      "address": "Bermuda",
+      "city": "Dibrugarh",
+      "state": "Assam",
+      "zip": "781026",
+      "phoneno": "77777",
+      "email": "hayatodangal@gmail.com",
+      "start": "2020-11-15"
+    },
+    {
+      "firstname": "Mark",
+      "lastname": "Evans",
+      "address": "Panbazar",
+      "city": "Guwahati",
+      "state": "Assam",
+      "zip": "781032",
+      "phoneno": "777777",
+      "email": "mark.evans@gmail.com",
+      "start": "2020-12-28"
+    }
+  ]
+}
